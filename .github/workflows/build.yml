@@ -11,13 +11,19 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip openjdk-17-jdk zip libltdl-dev
-      - name: Install Buildozer and tools
+          sudo apt install -y python3-pip openjdk-17-jdk zip
+      - name: Install Buildozer
         run: |
           pip install buildozer
-      - name: Accept Android licenses
+      - name: Fix aidl path
         run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          AIDL_PATH=$(find / -name aidl -type f 2>/dev/null | head -1)
+          if [ -n "$AIDL_PATH" ]; then
+            sudo ln -sf $AIDL_PATH /usr/local/bin/aidl
+            echo "AIDL found and linked"
+          else
+            echo "AIDL not found, skipping"
+          fi
       - name: Build APK
         run: buildozer android debug
       - name: Upload APK
