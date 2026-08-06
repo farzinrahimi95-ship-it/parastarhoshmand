@@ -12,11 +12,18 @@ jobs:
         run: |
           pip install buildozer
           sudo apt update
-          sudo apt install -y python3-pip openjdk-17-jdk zip android-sdk
+          sudo apt install -y python3-pip openjdk-17-jdk zip
+      - name: Setup Android SDK
+        run: |
+          wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+          mkdir -p /usr/local/lib/android/sdk/cmdline-tools
+          unzip commandlinetools-linux-9477386_latest.zip -d /usr/local/lib/android/sdk/cmdline-tools
+          mv /usr/local/lib/android/sdk/cmdline-tools/cmdline-tools /usr/local/lib/android/sdk/cmdline-tools/latest
+          echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+          echo "PATH=$PATH:/usr/local/lib/android/sdk/cmdline-tools/latest/bin" >> $GITHUB_ENV
       - name: Build APK
         run: |
-          export ANDROID_HOME=/usr/lib/android-sdk
-          buildozer android debug
+          yes | buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
