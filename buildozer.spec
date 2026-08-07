@@ -12,9 +12,7 @@ fullscreen = 1
 [buildozer]
 log_level = 2
 warn_on_root = 1
-android.ndk = 23.2.8568313
-android.sdk = 34
-android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
-android.skip_update = False
+android.skip_update = True
 android.accept_sdk_license = True
 p4a.branch = develop
+p4a.sdk_dir = /usr/local/lib/android/sdk
