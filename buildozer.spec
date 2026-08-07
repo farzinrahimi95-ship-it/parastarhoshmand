@@ -17,3 +17,4 @@ android.sdk = 34
 android.skip_update = False
 android.accept_sdk_license = True
 p4a.branch = develop
+android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
