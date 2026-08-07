@@ -21,9 +21,18 @@ jobs:
             sudo cp $AIDL_PATH /usr/bin/aidl
             sudo chmod +x /usr/bin/aidl
             buildozer android debug
-          fi
+          fi  
+          - name: Find APK
+        run: |
+          echo "Searching for APK files..."
+          find / -name "*.apk" 2>/dev/null || echo "No APK found"
+          ls -la bin/ 2>/dev/null || echo "bin
+          
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: parastar-apk
-          path: bin/*.apk
+          path: |
+  bin/*.apk
+  *.apk
+  **/*.apk
