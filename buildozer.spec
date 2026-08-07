@@ -17,3 +17,4 @@ android.accept_sdk_license = True
 android.ndk = 25.2.9519653
 android.sdk = 33
 p4a.branch = develop
+android.build_mode = debug
