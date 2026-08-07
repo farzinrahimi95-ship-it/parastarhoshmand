@@ -15,7 +15,6 @@ jobs:
           sudo apt install -y python3-pip openjdk-17-jdk zip
       - name: Build APK with auto-fix
         run: |
-          buildozer init
           buildozer android debug || true
           export AIDL_PATH=$(find ~/.buildozer -name aidl -type f 2>/dev/null | head -1)
           if [ -n "$AIDL_PATH" ]; then
