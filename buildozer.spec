@@ -12,13 +12,8 @@ fullscreen = 1
 [buildozer]
 log_level = 2
 warn_on_root = 1
-android.skip_update = True
-android.accept_sdk_license = True
-android.ndk = 25.2.9519653
-android.sdk = 33
-p4a.branch = develop
-android.build_mode = debug
-p4a.branch = develop
-android.sdk = 33
-android.ndk = 25.2.9519653
+android.ndk = 23.2.8568313
+android.sdk = 31
 android.skip_update = False
+android.accept_sdk_license = True
+p4a.branch = develop
