@@ -8,31 +8,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Install Kivy APK Builder
+      - name: Install dependencies
         run: |
           pip install buildozer
           sudo apt update
           sudo apt install -y python3-pip openjdk-17-jdk zip
-      - name: Build APK with auto-fix
-        run: |
-          buildozer android debug || true
-          export AIDL_PATH=$(find ~/.buildozer -name aidl -type f 2>/dev/null | head -1)
-          if [ -n "$AIDL_PATH" ]; then
-            sudo cp $AIDL_PATH /usr/bin/aidl
-            sudo chmod +x /usr/bin/aidl
-            buildozer android debug
-          fi  
-          - name: Find APK
-        run: |
-          echo "Searching for APK files..."
-          find / -name "*.apk" 2>/dev/null || echo "No APK found"
-          ls -la bin/ 2>/dev/null || echo "bin
-          
+      - name: Build APK
+        run: buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: parastar-apk
-          path: |
-  bin/*.apk
-  *.apk
-  **/*.apk
+          path: bin/*.apk
