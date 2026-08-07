@@ -18,3 +18,7 @@ android.ndk = 25.2.9519653
 android.sdk = 33
 p4a.branch = develop
 android.build_mode = debug
+p4a.branch = develop
+android.sdk = 33
+android.ndk = 25.2.9519653
+android.skip_update = False
